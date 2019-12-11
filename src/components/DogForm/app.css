@@ -1,0 +1,21 @@
+.createNewDog {
+    margin-bottom: 1rem;
+}
+
+.newDog{
+    margin-bottom: 1rem;
+}
+
+.newDogForm {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 200px;
+}
+
+.submitButton {
+    width: 150px;
+    margin-left: 30px;
+}

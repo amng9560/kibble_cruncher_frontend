@@ -1,0 +1,22 @@
+.editDogs {
+    margin-bottom: 1rem;
+}
+
+.editDog{
+    margin-bottom: 1rem;
+}
+
+.editDogForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 200px;
+    margin-bottom: 0.5rem;
+}
+
+.editsubmitButton {
+    width: 150px;
+}
