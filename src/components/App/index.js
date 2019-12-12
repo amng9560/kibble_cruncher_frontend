@@ -5,9 +5,9 @@ import FoodBowl from '../FoodBowl'
 import Food from '../Food'
 import Login from '../Login'
 
-const userUrl = "http://localhost:3000/users/"
-const foodUrl = "http://localhost:3000/foods/"
-const petUrl = "http://localhost:3000/pets/"
+const userUrl = "https://kibble-cruncher.herokuapp.com/users/"
+const foodUrl = "https://kibble-cruncher.herokuapp.com/foods/"
+const petUrl = "https://kibble-cruncher.herokuapp.com/pets/"
 
 export default class App extends Component {
     state = {

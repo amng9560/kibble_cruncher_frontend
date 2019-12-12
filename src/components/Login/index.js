@@ -43,7 +43,7 @@ export default class Login extends Component {
       }
 
       createUser = (request) => {
-        fetch("http://localhost:3000/users", request)
+        fetch("https://kibble-cruncher.herokuapp.com/users", request)
           .then(response => response.json())
           .then(response => {
             if (!response.error) {
@@ -62,7 +62,7 @@ export default class Login extends Component {
       }
       
       logIn = (request) => {
-        fetch("http://localhost:3000/authenticate", request)
+        fetch("https://kibble-cruncher.herokuapp.com/authenticate", request)
           .then(response => response.json())
           .then(response => {
             localStorage.setItem('authToken', response.auth_token)
