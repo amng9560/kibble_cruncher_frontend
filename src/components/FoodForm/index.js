@@ -30,7 +30,6 @@ export default class FoodForm extends Component {
     }
 
     render(){
-        console.log(this.props.id)
         const {name, brand, expiration_date, amount} = this.state
         return (
             <div className="createNewFood">

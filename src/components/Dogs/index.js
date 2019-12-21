@@ -15,7 +15,13 @@ export default class Dogs extends Component {
     }
 
     pets = () => this.props.pets.map((pet, i) => {
-        return <Card key={i} pet={pet} editPet={this.props.editPet} addFood={this.props.addFood} deletePet={this.props.deletePet}/>
+        return <Card 
+            key={i} 
+            pet={pet} 
+            editPet={this.props.editPet} 
+            addFood={this.props.addFood} 
+            deletePet={this.props.deletePet}
+        />
     })
 
     render () {
@@ -23,7 +29,7 @@ export default class Dogs extends Component {
             <div className="dogContainer">
                 <h1 className="petHeader">Pets</h1>
                 {this.state.petForm 
-                    ? <DogForm toggleDogForm={this.toggleDogForm} addPet={this.props.addPet}/>
+                    ? <DogForm toggleDogForm={this.toggleDogForm} submitHandler={this.props.addPet}/>
                     : null
                 }
                 <button className="addDogButton" onClick={this.toggleDogForm}>Add a Dog</button>

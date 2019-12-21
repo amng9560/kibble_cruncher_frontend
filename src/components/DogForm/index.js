@@ -9,6 +9,11 @@ export default class DogForm extends Component {
         animaltype: ""
     }
 
+    componentDidMount(){
+        const { defaultValues } = this.props
+        defaultValues && this.setState(defaultValues)
+    }
+
     handleChange = (event) => {
         const { name, value} = event.target
         this.setState({
@@ -17,10 +22,9 @@ export default class DogForm extends Component {
     }
 
     handleSubmit = (event) => {
-        
         event.preventDefault()
-        const { addPet } = this.props
-        addPet(this.state)
+        const { submitHandler } = this.props
+        submitHandler(this.state)
         this.setState({
             name: "",
             breed: "",

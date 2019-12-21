@@ -91,17 +91,24 @@ export default class App extends Component {
         })
     }
 
-    editPet = (updatedPet) => {
+    editPet = (petId, updatedPet) => {
         const { id } = this.state.user
         const body = JSON.stringify({...updatedPet, user_id: id})
-        const newState = this.state.pets.filter(pet => pet.id !== updatedPet.id)
-
-        return this.fetchCall(`${userUrl}${id}/pets/${updatedPet.id}`, "PATCH", body)
-
+        return this.fetchCall(`${userUrl}${id}/pets/${petId}`, "PATCH", body)
         .then(response => response.json())
-        .then(pet => {
+        .then(() => {
             this.setState({
-                pets: [...newState, {attributes: pet}]
+                pets: [
+                    ...this.state.pets.map(existingPet => {
+                        if(existingPet.id === petId){
+                            const newAttributes = Object.assign(existingPet.attributes, updatedPet)
+                            const updatedAttributes = {attributes: newAttributes}
+                            return Object.assign(existingPet, updatedAttributes)
+                        } else {
+                            return existingPet
+                        }
+                    }) 
+                ]
             })
         })
     }

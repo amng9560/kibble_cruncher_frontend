@@ -80,7 +80,7 @@ export default class Login extends Component {
 
       signUpForm = () => {
         return (
-          <form className="createUser">
+          <span className="createUser">
             <input 
               className="firstName" 
               onChange={this.handleChange} 
@@ -94,7 +94,7 @@ export default class Login extends Component {
               name="lastname" 
               placeholder="Last Name" 
             />
-          </form>
+          </span>
         )
       }
 

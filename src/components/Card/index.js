@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './app.css'
-import EditDogForm from "../EditDogForm"
+// import EditDogForm from "../EditDogForm"
+import DogForm from "../DogForm"
 import FoodForm from "../FoodForm"
 import FoodAmount from "../FoodAmount"
 let moment = require('moment');
@@ -25,6 +26,14 @@ export default class Card extends Component {
         })
     }
 
+    submitHandler = (updatedPet) => {
+        const {pet} = this.props
+        this.props.editPet(pet.id, updatedPet)
+        this.setState({
+            editForm: !this.state.editForm
+        })
+    }
+
     render(){
         const age = (date_string) => {
             let birthDate = moment(date_string).format("YYYY-MM-DD")
@@ -39,15 +48,18 @@ export default class Card extends Component {
             let expirationDate = moment(date).diff(currentDate, 'days')
             return expirationDate
         }
-        const {data, pet, deletePet, editFoodAmount, deleteFood } = this.props
-
+        const {data, pet, deletePet, editFoodAmount, deleteFood, addFood } = this.props
+        // console.log("pet in card", pet)
+        // console.log('data', data)
+        const {name, breed, birth_date, animaltype} = pet.attributes
+            
         return  pet
                 ?   (
                     <div className="dogCard">
-                        <h3>Name: {pet.attributes.name}</h3>
-                        <p>Breed: {pet.attributes.breed}</p>
-                        <p>Age: {age(pet.attributes.birth_date)}</p>
-                        <p>Animal:{pet.attributes.animaltype}</p>
+                        <h3>Name: {name}</h3>
+                        <p>Breed: {breed}</p>
+                        <p>Age: {age(birth_date)}</p>
+                        <p>Animal:{animaltype}</p>
                         <div className="buttonContainer">
                             <img 
                                 className='petCardEditButton' 
@@ -64,11 +76,21 @@ export default class Card extends Component {
                             <button className="addFoodButton" onClick={this.toggleFoodForm}>Add a Dog's Food</button>
                         </div>
                         {this.state.editForm
-                            ? <EditDogForm id={pet.id} pet={pet} toggleEditForm={this.toggleEditForm} editPet={this.props.editPet} />
+                            ? <DogForm 
+                                id={pet.id} 
+                                pet={pet} 
+                                defaultValues={{name, breed, birth_date, animaltype}} 
+                                toggleEditForm={this.toggleEditForm}
+                                submitHandler={this.submitHandler}
+                            />
                             : null
                         }
                         {this.state.FoodForm 
-                            ? <FoodForm id={pet.id} toggleFoodForm={this.togglFoodForm} addFood={this.props.addFood}/>
+                            ? <FoodForm 
+                                id={pet.id} 
+                                toggleFoodForm={this.togglFoodForm} 
+                                addFood={addFood}
+                            />
                             : null
                         }
                     </div>
